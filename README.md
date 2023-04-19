@@ -23,7 +23,7 @@ The important lines are:
 34> `cloud_pts, cloud_rgb = process_img_folder(folder, loop)`
 
 which calls `process_img_folder` on a set of images (the 360 sequence of the
-Toy from the Turntable) saved in the `imgs` folder.
+Toy from the Turntable) saved in the `penguin_4_17` folder.
 
 39> `save_point_cloud(cloud_pts, cloud_rgb, "prinplup")`
 
