@@ -13,20 +13,26 @@ counter.init()
 num_keep = 50
 
 # Choose data and transform
-data_sets = ["cactus_light_3_21", "cactus_light_4_2", "starbucks_4_9", "pincushion_4_13", "penguin_4_17"]
-data = data_sets[4]
+data_sets = ["cactus_light_3_21", "cactus_light_4_2", "starbucks_4_9", "pincushion_4_13", "penguin_4_17", "cube_4_20", "pokemon_4_19"]
+data = data_sets[0]
 transform_options = ["SIFT", "ORB", "FLANN"]
-transform = transform_options[1]
+transform = transform_options[0]
 print("\n" + "-" * 60)
 print("Processing " + data + " Data")
 print("Using " + transform + " Transform")
 
 # Parameters
-num_cameras = 18  # number of sequential images
-degree = 20       # degree of rotation between images
-distance = 175    # based on the turntable setup
-height = 0        # based on the turntable setup
-# save_camera_props(num_cameras, degree, distance, height)
+if data == "pokemon_4_19":
+    num_cameras = 18  # number of sequential images
+    degree = 20       # degree of rotation between images
+    distance = 175    # based on the turntable setup
+    height = 0        # based on the turntable setup
+else:
+    num_cameras = 36  # number of sequential images
+    degree = 10       # degree of rotation between images
+    distance = 165.1  # based on the turntable setup
+    height = 0        # based on the turntable setup
+save_camera_props(num_cameras, degree, distance, height)
 
 #! 1. calibrate and store camera parameters
 print("-" * 60)
@@ -45,7 +51,7 @@ print("Calculating and Storing Camera Properties")
 print("\n" + "-" * 60)
 print("Processing Images into Point Cloud")
 
-folder = "penguin_4_17" # where the source images are stored
+folder = data + "\PNG" # where the source images are stored
 loop = True     # True iff images are taken in a loop 
 cloud_pts, cloud_rgb = process_img_folder(folder, loop)
 

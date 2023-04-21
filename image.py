@@ -106,7 +106,7 @@ def process_img_folder(folder, loop):
   '''
 
   # gather images
-  images = sorted(glob.glob(folder + "/*.jpg"))
+  images = sorted(glob.glob(folder + "/*"))
   print("Images Discovered")
   print(images)
 
@@ -120,6 +120,8 @@ def process_img_folder(folder, loop):
   # for i in range(1): #!--------------------------------- this is for test purposes, compare first two
     # open pair of images
     img1 = cv2.imread(images[i], 1)
+    img1 = cv2.resize(img1, dsize=(img1.shape[1]//2, img1.shape[0]//2))
+    img1 = img1[700:1600, 300:1150]
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)
 
     if i < len(images) - 1:
@@ -127,9 +129,11 @@ def process_img_folder(folder, loop):
     elif loop:
       img2_index = 0
     else:
+      print("Failed...")
       break # error here, shouldn't reach
     img2 = cv2.imread(images[img2_index], 1)
-    img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)
+    img2 = cv2.resize(img2, dsize=(img2.shape[1]//2, img2.shape[0]//2))
+    img2 = img2[700:1600, 300:1150]
 
     print("comparing images: {} and {}".format(images[i], images[img2_index]))
 
